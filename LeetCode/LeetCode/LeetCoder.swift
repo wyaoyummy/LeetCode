@@ -141,4 +141,24 @@ struct LeetCoder {
         return newNode
     }
     
+    static func mergeTwoLists1(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        if l1 == nil && l2 == nil {
+            return nil
+        }
+        
+        if l1 == nil || l2 == nil {
+            return l1 == nil ? l2 : l1
+        }
+        
+        var newNode: ListNode? = nil
+        
+        if l1!.val <= l2!.val {
+            newNode = l1
+            newNode?.next = mergeTwoLists(l1?.next, l2)
+        } else {
+            newNode = l2
+            newNode?.next = mergeTwoLists(l1, l2?.next)
+        }
+        return newNode
+    }
 }
