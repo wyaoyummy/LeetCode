@@ -8,6 +8,21 @@
 
 import Foundation
 
+public class ListNode {
+    
+    public var val: Int
+   
+    public var next: ListNode?
+ 
+    public init(_ val: Int) {
+
+        self.val = val
+
+        self.next = nil
+
+    }
+}
+
 struct LeetCoder {
     
     /// 最长共有字符串
@@ -82,6 +97,48 @@ struct LeetCoder {
             }
         }
         return cStrArr.isEmpty
+    }
+    
+    static func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        if l1 == nil {
+            return l2
+        }
+        
+        if l2 == nil {
+            return l1
+        }
+        var newNode: ListNode? = nil
+        var newNode1 = l1
+        var newNode2 = l2
+        if newNode1!.val < newNode2!.val {
+            newNode = newNode1
+            newNode1 = newNode1?.next
+        } else {
+            newNode = newNode2
+            newNode2 = newNode2?.next
+        }
+        
+        var tempNode = newNode
+        while (newNode1 != nil) && (newNode2 != nil) {
+            if newNode1!.val <= newNode2!.val {
+                tempNode?.next = newNode1
+                newNode1 = newNode1?.next
+            } else {
+                tempNode?.next = newNode2
+                newNode2 = newNode2?.next
+            }
+            tempNode = tempNode?.next
+        }
+        
+        if newNode1 != nil && newNode2 == nil {
+            tempNode?.next = newNode1
+        }
+        
+        if newNode1 == nil && newNode2 != nil {
+            tempNode?.next = newNode2
+        }
+        
+        return newNode
     }
     
 }
