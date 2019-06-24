@@ -161,4 +161,35 @@ struct LeetCoder {
         }
         return newNode
     }
+    
+    static func removeDuplicates(_ nums: inout [Int]) -> Int {
+        if nums.count == 0 || nums.count == 1 {
+            return nums.count
+        }
+        
+        var size = 0
+        for i in 0..<nums.count {
+            if nums[i] != nums[size] {
+                size += 1
+                nums[size] = nums[i]
+            }
+        }
+        return size + 1
+    }
+    
+    static func removeDuolicates(_ nums: inout [Int], val: Int) -> Int {
+        if nums.count == 0 || nums.count == 1 {
+            return nums.count
+        }
+        
+        var size = 0
+        for i in 0..<nums.count {
+            if nums[i] != val {
+                size += 1
+                nums[size] = nums[i]
+            }
+        }
+        
+        return size + 1
+    }
 }
