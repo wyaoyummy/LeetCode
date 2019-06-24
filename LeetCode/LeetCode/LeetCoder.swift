@@ -177,19 +177,19 @@ struct LeetCoder {
         return size + 1
     }
     
-    static func removeDuolicates(_ nums: inout [Int], val: Int) -> Int {
+    static func removeDuolicatesForVal(_ nums: inout [Int], val: Int) -> Int {
         if nums.count == 0 || nums.count == 1 {
             return nums.count
         }
         
-        var size = 0
-        for i in 0..<nums.count {
-            if nums[i] != val {
-                size += 1
-                nums[size] = nums[i]
+        var i = 0
+        for j in 0..<nums.count {
+            if nums[j] != val {
+                nums[i] = nums[j]
+                i += 1
             }
         }
         
-        return size + 1
+        return i
     }
 }
